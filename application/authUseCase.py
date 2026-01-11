@@ -1,7 +1,8 @@
+from domain.ports.userRepository import UserRepositoryPort
 
 class LoginUseCase:
     
-    def __init__(self, userRepo, hasher, tokenService):
+    def __init__(self, userRepo: UserRepositoryPort, hasher, tokenService):
         self.userRepo       =   userRepo    #Objeto de domain, que se declara en memoria.
         self.hasher         =   hasher  
         self.tokenService   =   tokenService
