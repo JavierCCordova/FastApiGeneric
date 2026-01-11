@@ -3,10 +3,20 @@ from application.authUseCase import LoginUseCase
 from infrastructure.security.hasher import PasswordHasher
 from infrastructure.security.tokenService import TokenService
 from core.config import getSettings
+from infrastructure.persistence.mongodb.connection import getMongo
+from infrastructure.persistence.mongodb.userRepository import MongoRepository
 
-def getLoginUseCase(settings = Depends(getSettings)):
+
+async def getUserRepository():
+    collection  =   getMongo()
+    return MongoRepository(collection)
+
+async def getLoginUseCase(settings = Depends(getSettings)):
+    
+    repo    =  await getUserRepository()
+    
     return LoginUseCase(
-        userRepo=       None,
+        userRepo=       repo,
         hasher=         PasswordHasher(),
         tokenService=   TokenService(settings)
     )
