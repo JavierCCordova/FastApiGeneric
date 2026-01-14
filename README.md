@@ -46,11 +46,11 @@ api/
 ## 🧠 Arquitectura Hexagonal
 
 graph TD
-    A[Request HTTP] --> B[FastAPI Router api/routers]
-    B --> C[UseCase application]
-    C --> D[Port domain/*/ports.py]
-    D --> E[Adapter infrastructure]
-    E --> F[MongoDB / Tesseract / JWT]
+    - A[Request HTTP] --> B[FastAPI Router api/routers]
+    - B --> C[UseCase application]
+    - C --> D[Port domain/*/ports.py]
+    - D --> E[Adapter infrastructure]
+    - E --> F[MongoDB / Tesseract / JWT]
 
 ## ⚙️ Tecnologías
 
