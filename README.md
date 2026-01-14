@@ -7,65 +7,50 @@ Estructura o esqueleto para consumo de API.
 
 
 ## 📁 Estructura del Proyecto
+```text
 api/
 ├── routers/
-│ ├── ocr.py
-│ ├── routes.py
-│ └── dependencies.py
-│
+│   ├── ocr.py
+│   ├── routes.py
+│   └── dependencies.py
 ├── application/
-│ ├── authUseCase.py
-│ └── tesseractUseCase.py
-│
+│   ├── authUseCase.py
+│   └── tesseractUseCase.py
 ├── core/
-│ └── config.py
-│
+│   └── config.py
 ├── domain/
-│ ├── user/
-│ │ ├── entities.py
-│ │ └── ports.py
-│ └── tesseract/
-│ ├── entities.py
-│ └── ports.py
-│
+│   ├── user/
+│   │   ├── entities.py
+│   │   └── ports.py
+│   └── tesseract/
+│       ├── entities.py
+│       └── ports.py
 ├── infrastructure/
-│ ├── adapters/
-│ │ └── ocr/
-│ │ └── tesseractPdfExtractor.py
-│ │
-│ ├── persistence/
-│ │ └── mongodb/
-│ │ ├── connection.py
-│ │ └── userRepository.py
-│ │
-│ └── security/
-│ ├── hasher.py
-│ └── tokenService.py
-│
+│   ├── adapters/
+│   │   └── ocr/
+│   │       └── tesseractPdfExtractor.py
+│   ├── persistence/
+│   │   └── mongodb/
+│   │       ├── connection.py
+│   │       └── userRepository.py
+│   └── security/
+│       ├── hasher.py
+│       └── tokenService.py
 ├── main.py
 ├── script.py
 ├── .env
 ├── requirements.txt
 └── README.md
+```
 
 ## 🧠 Arquitectura Hexagonal
 
-Request HTTP
-│
-▼
-FastAPI Router (api/routers)
-│
-▼
-UseCase (application)
-│
-▼
-Port (domain/*/ports.py)
-│
-▼
-Adapter (infrastructure)
-│
-▼
-MongoDB / Tesseract / JWT
+graph TD
+    A[Request HTTP] --> B[FastAPI Router api/routers]
+    B --> C[UseCase application]
+    C --> D[Port domain/*/ports.py]
+    D --> E[Adapter infrastructure]
+    E --> F[MongoDB / Tesseract / JWT]
 
 ## ⚙️ Tecnologías
 
@@ -86,23 +71,23 @@ MongoDb community
 
 ### Crear entorno virtual
 
-bash
-python3 -m venv venv
-source venv/bin/activate
+-bash
+-python3 -m venv venv
+-source venv/bin/activate
 
 #  Dependencias
-pip install -r requirements.txt
+-pip install -r requirements.txt
 
 Creación 
 
 
 # variables de entorno
 
-MONGO_URI=mongodb://localhost:27017
-DB_NAME=fastapi_generic
-SECRET_KEY=supersecret
-ALGORITHM=HS256
-ACCESS_TOKEN_EXPIRE_MINUTES=30
+- MONGO_URI=mongodb://localhost:27017
+- DB_NAME=fastapi_generic
+- SECRET_KEY=supersecret
+- ALGORITHM=HS256
+- ACCESS_TOKEN_EXPIRE_MINUTES=30
 
 
 ## Ejecucion.
@@ -118,16 +103,16 @@ http://localhost:8000/docs
  Pass
 
 ## Principios aplicados. 
-Domain no depende de infraestructura
-UseCases solo conocen Ports
-Infraestructura implementa Ports
-FastAPI es solo un adaptador
+-Domain no depende de infraestructura
+-UseCases solo conocen Ports
+-Infraestructura implementa Ports
+-FastAPI es solo un adaptador
 
 ## Mejora
-Docker
-Tests con Pytest
-Roles de usuario
-Refresh Tokens
+-Docker
+-Tests con Pytest
+-Roles de usuario
+-Refresh Tokens
 
 ## Autor
 Javier Córdova
