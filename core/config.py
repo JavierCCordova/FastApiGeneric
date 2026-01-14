@@ -5,6 +5,8 @@ from  pydantic_settings import BaseSettings ## Generar clases para acceso al env
 class Settings(BaseSettings):
     SECRET_KEY  :   str
     ACCESS_TOKEN_EXPIRE_MINUTES :   int=30
+    MONGO_URL   :   str
+    DB_NAME     :   str
     
     class Config:
         """
@@ -31,5 +33,6 @@ def getSettings():
     """
     return Settings()
 
+settings    =   getSettings()
 # BaseSettings lee automáticamente .env
 # lru_cache() evita que se lea el archivo cada vez.

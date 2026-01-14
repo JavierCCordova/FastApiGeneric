@@ -2,6 +2,6 @@ from pydantic import BaseModel
 
 class UserEntity(BaseModel):
     
-    id:             int
+    id:             str
     userName:       str
     hashPassword:   str
